@@ -1,0 +1,6 @@
+.DS_Store
+
+!.htaccess
+*.swn
+*.swo
+*.swp
