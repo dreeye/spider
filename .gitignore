@@ -1,6 +1,8 @@
 .DS_Store
 
 !.htaccess
+lib/__pycache__
+*.pyc
 *.swn
 *.swo
 *.swp
