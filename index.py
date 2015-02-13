@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from lib.douban import Douban_api as doulib
+#from lib.douban import Douban_api as doulib
 import requests, re
 
 
@@ -14,9 +14,9 @@ for link in soup.find_all('a', attrs={'class':'ulink','title':True}):
     title = re.findall('《(.*)》',link.get('title'))
     href = link.get('href')
     source = {'title':title[0],'href':href}
-    repo = doulib.movie_search(start=0,count=1,title=title[0])
-    print(repo)
-    exit()
+    #repo = doulib.movie_search(start=0,count=1,title=title[0])
+#    print(repo)
+ #   exit()
 print(source)
 
 
