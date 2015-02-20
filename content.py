@@ -41,11 +41,15 @@ print(photos)
 #添加编剧并获取w_id
 common_mod = common_mod.Common()
 w_id = common_mod.add_writers(writers)
-#print(w_id)
-#exit()
-insert_data = {'origin_title':origin_title,'year':year,'photos':photos,'aka':aka,'writers':writers,'w_id':w_id}
-common_mod.insert_movie(**insert_data)
+c_id = common_mod.add_casts(casts)
+d_id = common_mod.add_directors(directors)
+coun_id = common_mod.add_countries(countries)
 
+#print(coun_id)
+#exit()
+insert_data = {'origin_title':origin_title,'year':year,'photos':photos,'aka':aka,'writers':writers,'w_id':w_id,'c_id':c_id,'summary':summary,'d_id':d_id,'countries':countries,'download':download,'coun_id':coun_id}
+common_mod.insert_movie(**insert_data)
+common_mod.close_connect()
 #for introd in soup.find_all("p",text=re.compile("◎")):
 #    into = introd.get_text()
 #    text = Comm.replace(into,('\u3000','\xa0',' ','◎'),'')

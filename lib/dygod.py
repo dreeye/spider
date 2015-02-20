@@ -102,7 +102,7 @@ class Dygod:
         """查找制片国家""" 
         is_exit =  re.findall("◎国家(.*?)◎",self.source)
         if is_exit :
-            return re.findall("◎国家(.*?)◎",self.source)[0].strip('/').split('/') 
+            return re.findall("◎国家(.*?)◎",self.source)[0].strip(' ').strip('/').split('/') 
         else:
             return '' 
      
