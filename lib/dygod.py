@@ -27,17 +27,17 @@ class Dygod:
         """处理页面的两种片名,以列表长度,是否英文为基准"""
 
         if re.findall("◎片名(.*?)◎",self.source): 
-            t1 = re.findall("◎片名(.*?)◎",self.source)[0].strip('/').split('/')
+            t1 = re.findall("◎片名(.*?)◎",self.source)[0].strip(' ').strip('/').split('/')
         else:
             t1 = None
 
         if re.findall("◎又名(.*?)◎",self.source):
-            t2 = re.findall("◎又名(.*?)◎",self.source)[0].strip('/').split('/')
+            t2 = re.findall("◎又名(.*?)◎",self.source)[0].strip(' ').strip('/').split('/')
         else:
             t2 = None
 
         if re.findall("◎译名(.*?)◎",self.source):
-            t3 =  re.findall("◎译名(.*?)◎",self.source)[0].strip('/').split('/')
+            t3 = re.findall("◎译名(.*?)◎",self.source)[0].strip(' ').strip('/').split('/')
         else:
             t3 = None
 
@@ -47,9 +47,9 @@ class Dygod:
                 if len(x)>1 :
                     self.aka = x 
                 elif len(x) ==1 and Comm.is_alphabet(x[0]):
-                    self.origin_title = x
+                    self.origin_title = x[0]
                 else:
-                    self.origin_title = x
+                    self.origin_title = x[0]
             else:
                 continue
 
@@ -63,22 +63,22 @@ class Dygod:
 
     def get_directors(self):
         """查找导演"""
-        return re.findall("◎导演(.*?)◎",self.source)[0].strip('/').split('/') 
+        return re.findall("◎导演(.*?)◎",self.source)[0].strip(' ').strip('/').split('/') 
 
     def get_writers(self):
         """查找编剧"""
         is_exit =  re.findall("◎编剧(.*?)◎",self.source)
         if is_exit :
-            return re.findall("◎编剧(.*?)◎",self.source)[0].strip('/') 
+            return re.findall("◎编剧(.*?)◎",self.source)[0].strip(' ').strip('/').strip(' ').split('/')
         else:
             return '' 
 
     def get_casts(self):
         """查找演员"""
         if re.findall("◎演员(.*?)◎",self.source) : 
-            return re.findall("◎演员(.*?)◎",self.source)[0].strip('/').split('/')
+            return re.findall("◎演员(.*?)◎",self.source)[0].strip('/').strip(' ').split('/')
         elif re.findall("◎主演(.*?)◎",self.source) : 
-            return re.findall("◎主演(.*?)◎",self.source)[0].strip('/').split('/')
+            return re.findall("◎主演(.*?)◎",self.source)[0].strip('/').strip(' ').split('/')
         else:
             return ''
 
@@ -94,7 +94,7 @@ class Dygod:
         """查找年代""" 
         is_exit =  re.findall("◎年代(.*?)◎",self.source)
         if is_exit :
-            return re.findall("◎年代(.*?)◎",self.source)[0].strip('/') 
+            return re.findall("◎年代(.*?)◎",self.source)[0].strip(' ').strip('/') 
         else:
             return '' 
 
@@ -134,3 +134,11 @@ class Dygod:
         else:
            link = ftp[0].strip('/')  
         return link
+
+    def get_photos(self):
+        """海报,截图"""
+        return re.findall("src=\"(.*.jpg)",self.prettify)
+    
+    def get_lang(self):
+        return None
+        
