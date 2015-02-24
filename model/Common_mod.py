@@ -6,8 +6,8 @@ class Common:
     conn = None
     c = None
 
-    def __init__(self):
-        self.conn = pymysql.connect(host='localhost', port=3306, user='root', passwd='', db='feshare',charset="utf8")
+    def __init__(self,password):
+        self.conn = pymysql.connect(host='localhost', port=3306, user='root', passwd=password, db='feshare',charset="utf8")
         self.c = self.conn.cursor()
 
     def insert_movie(self,**parm):

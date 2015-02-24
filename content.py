@@ -12,6 +12,7 @@ headers = {
 'Connection':'close',
 'Referer':'http://www.dy2018.com/' #注意如果依然不能抓取的话，这里可以设置抓取网站的host
 }
+mysqlpass = input('Please input you mysql password :')
 
 from_host = 'www.dy2018.com'
 genres = 0 
@@ -70,7 +71,7 @@ while n <= 50:
         #print(durations)
         #exit()
         #添加编剧并获取w_id
-        common_mod = Common_mod.Common()
+        common_mod = Common_mod.Common(mysqlpass)
         insert_data = {'title':title,'origin_title':origin_title,'year':year,'photos':photos,'download':download,'href':href,'from_host':from_host,'subtitle':subtitle,'lang':lang}
         common_mod.insert_movie(**insert_data)
         #time.sleep(5)
